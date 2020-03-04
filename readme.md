@@ -21,3 +21,10 @@ To create a new query
 ```
 dotnet new cqsquery --namespace <NamespaceForQuery> --name GetSomeDataFromTheDatabaseQuery
 ```
+
+
+To uninstall the templates again:
+
+```
+dotnet new -i CreativeMinds.CQS.Templates
+```
