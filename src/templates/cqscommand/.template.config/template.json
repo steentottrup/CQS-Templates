@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Steen F. Tøttrup",
+  "classifications": [ "Code" ],
+  "identity": "Skolevisioner.Trivsel.CQSComandTemplate",
+  "name": "CQS Command",
+  "shortName": "cqscommand",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "A CQS command template",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "precedence": "100",
+  "sourceName": "MyCommand",
+  "primaryOutputs": [
+    { "path": "MyCommand.cs" },
+    { "path": "MyCommandHandler.cs" },
+    {
+      "path": "MyCommandValidator.cs",
+      "condition": "(!no-validator)"
+    },
+    {
+      "path": "MyCommandPermissionCheck.cs",
+      "condition": "(!no-permissioncheck)"
+    }
+  ],
+  "defaultName": "MyCommand",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(no-validator)",
+          "exclude": [
+            "MyCommandValidator.cs"
+          ]
+        },
+        {
+          "condition": "(no-permissioncheck)",
+          "exclude": [
+            "MyCommandPermissionCheck.cs"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "namespace": {
+      "description": "namespace for the generated code",
+      "replaces": "MyApp.Namespace",
+      "type": "parameter"
+    },
+    "command": {
+      "description": "name of the command",
+      "replaces": "MyCommand",
+      "type": "parameter"
+    },
+    "no-validator": {
+      "description": "Create command without validation",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "no-permissioncheck": {
+      "description": "Create command without permission check",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  "postActions": [
+  ]
+}

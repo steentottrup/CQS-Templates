@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Steen F. Tøttrup",
+  "classifications": [ "Code" ],
+  "identity": "Skolevisioner.Trivsel.CQSQueryTemplate",
+  "name": "CQS Query",
+  "shortName": "cqsquery",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "A CQS query template",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "precedence": "100",
+  "sourceName": "MyQuery",
+  "primaryOutputs": [
+    { "path": "MyQuery.cs" },
+    { "path": "MyQueryHandler.cs" },
+    {
+      "path": "MyQueryValidator.cs",
+      "condition": "(!no-validator)"
+    },
+    {
+      "path": "MyQueryPermissionCheck.cs",
+      "condition": "(!no-permissioncheck)"
+    },
+    { "path": "MyQueryResult.cs" }
+  ],
+  "defaultName": "MyQuery",
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(no-validator)",
+          "exclude": [
+            "MyQueryValidator.cs"
+          ]
+        },
+        {
+          "condition": "(no-permissioncheck)",
+          "exclude": [
+            "MyQueryPermissionCheck.cs"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "namespace": {
+      "description": "namespace for the generated code",
+      "replaces": "MyApp.Namespace",
+      "type": "parameter"
+    },
+    "query": {
+      "description": "name of the query",
+      "replaces": "MyQuery",
+      "type": "parameter"
+    },
+    "no-validator": {
+      "description": "Create query without validation",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    },
+    "no-permissioncheck": {
+      "description": "Create query without permission check",
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  "postActions": [
+  ]
+}

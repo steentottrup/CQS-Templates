@@ -1,0 +1,25 @@
+version: 1.0.0.{build}
+configuration: Release
+init:
+- ps: "nuget sources update -Name AppVeyorAccountFeed -Source $env:nuget_source -UserName $env:nuget_user -Password $env:nuget_password"
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+environment:
+  nuget_user: nugetrestore@creativeminds.dk
+  nuget_password:
+    secure: t7dwAMlxY0RY+Ln49o6EKg==
+  nuget_source: https://ci.appveyor.com/nuget/creativeminds
+nuget:
+  account_feed: true
+  project_feed: true
+build_script:
+  - ps: >-
+      dotnet pack src\ -c Release
+
+after_build:
+  - ps: >-
+      Push-AppveyorArtifact src\bin\Release\netstandard2.1\*.nupkg
+
