@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyApp.Namespace {
 
-	public class CommandPermissionCheck : IAsyncPermissionCheck<MyCommand> {
+	public class MyCommandPermissionCheck : IAsyncPermissionCheck<MyCommand> {
 
 		public Task<IPermissionCheckResult> CheckAsync(MyCommand message, IIdentity user, CancellationToken cancellationToken) {
 			throw new System.NotImplementedException();

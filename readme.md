@@ -26,5 +26,5 @@ dotnet new cqsquery --namespace <NamespaceForQuery> --name GetSomeDataFromTheDat
 To uninstall the templates again:
 
 ```
-dotnet new -i CreativeMinds.CQS.Templates
+dotnet new -u CreativeMinds.CQS.Templates
 ```
